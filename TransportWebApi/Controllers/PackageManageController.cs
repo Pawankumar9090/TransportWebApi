@@ -16,7 +16,7 @@ namespace TransportWebApi.Controllers
         }
         [HttpGet]
         [Route("GetVehicle&DriverId")]
-        public IActionResult GetVehicleAndDriver(int capacity) 
+        public dynamic GetVehicleAndDriver(int capacity) 
         {
             if(capacity == 0)
             {
@@ -25,12 +25,12 @@ namespace TransportWebApi.Controllers
             var vid = _dbContext.Vehicle.Where(x=>x.Capacity>=capacity).OrderBy(e=>e.Capacity).Take(1).ToList();
             if (vid.Count > 0)
             {
-                List<int> ides = new List<int>();
+                int[] ides = new int[2];
                 var did = _dbContext.Driver.Where(x => x.LicenseLevel == vid[0].LicenseLevel && x.status==1).ToList();
                 if (did.Count > 0)
                 {
-                    ides.Append(vid[0].VehicleID);
-                    ides.Append(did[0].DriverID);
+                    ides[0]=vid[0].VehicleID;
+                    ides[1]=did[0].DriverID;
                     return Ok(ides);
                 }
             }
