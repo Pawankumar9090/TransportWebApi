@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "0EXrl6e4lUb6Ed+ACfIB/x7ZGnVBW8O8QFcRx4EQQ+U=",
+  "Source": "TransportWebApi",
+  "BasePath": "_content/TransportWebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
