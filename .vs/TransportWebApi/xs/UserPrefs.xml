@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{8A3AADAA-A1DF-4305-86D1-1468E091234F}|Default">
+  <MonoDevelop.Ide.ItemProperties.TransportWebApi PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TransportWebApi/Controllers/LocationManage.cs">
+    <Files>
+      <File FileName="TransportWebApi/Controllers/LocationManage.cs" Line="60" Column="37" />
+      <File FileName="TransportWebApi/appsettings.json" Line="14" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TransportWebApi" expanded="True">
+            <Node name="TransportWebApi">
+              <Node name="Controllers">
+                <Node name="LocationManage.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

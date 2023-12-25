@@ -24,7 +24,8 @@ namespace TransportWebApi.Controllers
             if (locationId > 0)
             {
                 Dictionary<int,int> distance = new Dictionary<int,int>();
-                string route = "";
+                string summary = "";
+                string traveldist = "";
                 var orderlocation = _dbContext.Location.Where(x => x.locationid == locationId).ToList();
                 var locationIdes=_dbContext.Location.Where(x=>(x.locationtype==1 || x.locationtype==3) && (x.availamount>=demandAmount) && (x.locationid!=locationId)).ToList();
                 if (locationIdes.Count>0)
@@ -40,7 +41,8 @@ namespace TransportWebApi.Controllers
                         request.Headers.Add("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiUGF3YW4gS3VtYXIiLCJQYXNzd29yZCI6IjEyMzQ1IiwiZXhwIjoxNzAyNjI3NjAwLCJpc3MiOiJQYXdhbiBLdW1hciIsImF1ZCI6IlJlYWRlciJ9.Wp4nvRUJexx_0k8_ZT-rzfTJByxD5xjH2XRG4lh9Ekw");
                         var response = await client.SendAsync(request);
                         response.EnsureSuccessStatusCode();
-                        JObject data= JObject.Parse(await response.Content.ReadAsStringAsync());                                             
+                        JObject data= JObject.Parse(await response.Content.ReadAsStringAsync());
+                        traveldist = Convert.ToString(data["routes"][0]["legs"][0]["distance"]["text"]);
                         int value = Convert.ToInt32(data["routes"][0]["legs"][0]["distance"]["value"]);
                         if (temp> value)
                         {
@@ -51,7 +53,7 @@ namespace TransportWebApi.Controllers
                             //var obj = new { route= Convert.ToString(data["routes"][0]["summary"]), };
                         }
                     }
-                    route = Convert.ToString(tempdata["routes"][0]["summary"]);
+                    summary = Convert.ToString(tempdata["routes"][0]["summary"]);
                     int length = Convert.ToInt32(tempdata["routes"][0]["legs"][0]["steps"].Count());                    
                     for (int i = (int)length / 3; i < length; i = i + (int)length / 3)
                     {
@@ -60,7 +62,7 @@ namespace TransportWebApi.Controllers
                         _dbContext.SaveChanges();
                     }
                     distance.Add(id,temp);
-                    var lastdata = new {summary=route,steps=steps};
+                    var lastdata = new {route=summary, steps=steps, TravelDistance=traveldist};
                     
                     
                     return lastdata;
